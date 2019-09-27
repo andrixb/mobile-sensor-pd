@@ -1,5 +1,5 @@
 import React from 'react';
-import DraggableArea from '../../components/DraggableArea/DraggableArea'
+import ColorsArea from '../../components/ColorsArea/ColorsArea'
 
 import './App.style.scss';
 
@@ -10,7 +10,7 @@ export class App extends React.Component<AppProps, any> {
     render() {
         return (
             <main className="app__container">
-                <DraggableArea />           
+                <ColorsArea />           
             </main>
         );
     }
