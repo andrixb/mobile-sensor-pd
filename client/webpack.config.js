@@ -58,10 +58,10 @@ module.exports = {
             {
                 test: /\.svg$/,
                 use: [{
-                        loader: "babel-loader"
+                        loader: 'babel-loader'
                     },
                     {
-                        loader: "react-svg-loader",
+                        loader: 'react-svg-loader',
                         options: {
                             jsx: true
                         }
@@ -115,7 +115,6 @@ module.exports = {
             poll: 1000
         },
         hot: true,
-        public: 'massive-sign-app.signaturit.test',
         port: 1200,
         contentBase: RELEASE_PATH,
         headers: {

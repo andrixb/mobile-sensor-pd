@@ -1,5 +1,5 @@
 {
-    "name": "test-app",
+    "name": "mobile-sensor-pd-client",
     "version": "0.1.0",
     "private": true,
     "scripts": {
@@ -7,7 +7,7 @@
         "start:dev": "yarn dev:path:base npm run dev:path:asset npm run dev:path:cdn npm run dev:path:host npm run dev:path:app webpack-dev-server",
         "build": "HOST=$HOST BASE_URL=$BASE_URL ASSETS_VERSION=$ASSETS_VERSION CDN_URL=$CDN_URL webpack --config webpack.prod.js",
         "test": "jest --verbose",
-        "test:clear:snapshot": "rm -r ./__tests__/components/__snapshots__",
+        "test:clear:snapshots": "rm -r ./__tests__/components/__snapshots__",
         "test:watch": "jest --watch",
         "test:coverage": "jest --coverage",
         "dev:path:host": "HOST=",
@@ -35,6 +35,9 @@
         "polyfill-array-includes": "^2.0.0",
         "react": "^16.8.6",
         "react-dom": "^16.8.6",
+        "react-redux": "^7.1.1",
+        "redux": "^4.0.4",
+        "redux-thunk": "^2.3.0",
         "socket.io-client": "^2.3.0",
         "uuid": "^3.3.3"
     },
@@ -48,6 +51,7 @@
         "@types/node": "~8.9.4",
         "@types/react": "^16.8.17",
         "@types/react-dom": "^16.8.4",
+        "@types/react-redux": "^7.1.4",
         "@types/react-test-renderer": "^16.8.1",
         "@types/socket.io-client": "^1.4.32",
         "babel-core": "^6.26.3",
@@ -76,6 +80,7 @@
         "react-docgen-typescript-loader": "^3.1.0",
         "react-svg-loader": "^3.0.3",
         "react-testing-library": "^8.0.1",
+        "redux-devtools-extension": "^2.13.8",
         "resolve-url-loader": "^3.1.0",
         "sass-jest": "^0.1.7",
         "sass-loader": "^7.1.0",
