@@ -1,0 +1,120 @@
+Arguments: 
+  /Users/andreabaldo/.nvm/versions/node/v10.9.0/bin/node /usr/local/Cellar/yarn/1.15.2/libexec/bin/yarn.js
+
+PATH: 
+  /usr/local/opt/ruby/bin:/Users/andreabaldo/.nvm/versions/node/v10.9.0/bin:/usr/local/bin:/usr/bin:/bin:/usr/sbin:/sbin:/Applications/Wireshark.app/Contents/MacOS:/usr/local/opt/ruby/bin:/Users/andreabaldo/.gem/ruby/2.6.0/bin:/Users/andreabaldo/.gem/ruby/2.6.0/bin
+
+Yarn version: 
+  1.15.2
+
+Node version: 
+  10.9.0
+
+Platform: 
+  darwin x64
+
+Trace: 
+  SyntaxError: /Users/andreabaldo/Projects/ReactSassWebpack2Setup/package.json: Unexpected token } in JSON at position 789
+      at JSON.parse (<anonymous>)
+      at /usr/local/Cellar/yarn/1.15.2/libexec/lib/cli.js:1625:59
+      at Generator.next (<anonymous>)
+      at step (/usr/local/Cellar/yarn/1.15.2/libexec/lib/cli.js:304:30)
+      at /usr/local/Cellar/yarn/1.15.2/libexec/lib/cli.js:315:13
+
+npm manifest: 
+  {
+      "name": "test-app",
+      "version": "0.1.0",
+      "private": true,
+      "scripts": {
+          "start": "yarn start:dev",
+          "start:dev": "yarn dev:path:base npm run dev:path:asset npm run dev:path:cdn npm run dev:path:host npm run dev:path:app webpack-dev-server",
+          "build": "HOST=$HOST BASE_URL=$BASE_URL ASSETS_VERSION=$ASSETS_VERSION CDN_URL=$CDN_URL webpack --config webpack.prod.js",
+          "test": "jest --verbose",
+          "test:clear:snapshot": "rm -r ./__tests__/components/__snapshots__",
+          "test:watch": "jest --watch",
+          "test:coverage": "jest --coverage",
+          "dev:path:host": "HOST=",
+          "dev:path:base": "BASE_URL=",
+          "dev:path:cdn": "CDN_URL=",
+          "dev:path:asset": "ASSETS_VERSION=",
+          "dev:path:app": "APP_URL=",
+      },
+      "browserslist": {
+          "production": [
+              ">0.2%",
+              "not dead",
+              "not op_mini all"
+          ],
+          "development": [
+              "last 1 chrome version",
+              "last 1 firefox version",
+              "last 1 safari version"
+          ]
+      },
+      "dependencies": {
+          "lodash": "^4.17.11",
+          "polyfill-array-includes": "^2.0.0",
+          "react": "^16.8.6",
+          "react-dom": "^16.8.6",
+      },
+      "devDependencies": {
+          "@testing-library/jest-dom": "^4.0.0",
+          "@testing-library/react": "^8.0.6",
+          "@types/enzyme": "^3.9.2",
+          "@types/fetch-mock": "^7.3.1",
+          "@types/jest": "^24.0.13",
+          "@types/lodash": "^4.14.134",
+          "@types/node": "~8.9.4",
+          "@types/react": "^16.8.17",
+          "@types/react-dom": "^16.8.4",
+          "@types/react-test-renderer": "^16.8.1",
+          "babel-core": "^6.26.3",
+          "babel-jest": "^24.8.0",
+          "babel-loader": "^7.1.5",
+          "babel-plugin-transform-runtime": "^6.23.0",
+          "babel-preset-env": "^1.7.0",
+          "babel-preset-react": "^6.24.1",
+          "babel-preset-stage-0": "^6.24.1",
+          "clean-webpack-plugin": "^2.0.2",
+          "copy-webpack-plugin": "^5.0.3",
+          "css-loader": "^2.1.1",
+          "enzyme": "^3.9.0",
+          "enzyme-adapter-react-16": "^1.13.2",
+          "enzyme-to-json": "^3.3.5",
+          "fetch-mock": "^7.3.3",
+          "file-loader": "^3.0.1",
+          "got": "^9.2.2",
+          "html-webpack-plugin": "^3.2.0",
+          "jest": "^24.8.0",
+          "json-loader": "^0.5.7",
+          "mini-css-extract-plugin": "^0.6.0",
+          "node-cmd": "^3.0.0",
+          "node-sass": "^4.12.0",
+          "postcss-loader": "^3.0.0",
+          "react-docgen-typescript-loader": "^3.1.0",
+          "react-svg-loader": "^3.0.3",
+          "react-testing-library": "^8.0.1",
+          "resolve-url-loader": "^3.1.0",
+          "sass-jest": "^0.1.7",
+          "sass-loader": "^7.1.0",
+          "style-loader": "^0.23.1",
+          "svg-sprite-loader": "^4.1.6",
+          "ts-jest": "^24.0.2",
+          "ts-loader": "^6.0.0",
+          "ts-node": "^7.0.1",
+          "tslib": "^1.10.0",
+          "typescript": "3.4.5",
+          "url-loader": "^1.1.2",
+          "webpack": "4.31.0",
+          "webpack-cli": "^3.3.2",
+          "webpack-dev-server": "^3.3.1",
+          "webpack-merge": "^4.2.1"
+      }
+  }
+
+yarn manifest: 
+  No manifest
+
+Lockfile: 
+  No lockfile

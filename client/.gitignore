@@ -1,0 +1,4 @@
+.DS_Store
+dist/
+node_modules/
+__tests__/__snapshots__

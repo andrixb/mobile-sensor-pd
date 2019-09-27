@@ -1,0 +1,19 @@
+$cl: 'draggable';
+
+.#{$cl} {
+    &__container {
+        display: flex;
+        justify-content: center;
+        align-items: center;
+        position: absolute;
+        top: 0;
+        left: 0;
+        width: 120px;
+        height: 70px;
+        padding: 8px;
+        background: rgba(255, 255, 255, 0.5);
+        border: 1px solid grey;
+        border-radius: 1px;
+        cursor: pointer;
+    }
+}

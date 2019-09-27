@@ -1,0 +1,12 @@
+$cl: 'app';
+
+.#{$cl} {
+    &__container {
+        position: relative;
+        display: flex;
+        align-items: center;
+        justify-content: center;
+        width: 100%;
+        height: auto;
+    }
+}

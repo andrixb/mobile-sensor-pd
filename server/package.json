@@ -1,0 +1,21 @@
+{
+    "name": "mobile-sensor-pd-server",
+    "version": "0.0.1",
+    "description": "A socket.io server for handling mobile connections. Written in TypeScript",
+    "scripts": {
+        "start": "ts-node ./src/*.ts",
+        "watch": "nodemon --exec 'ts-node' ./src/*.ts"
+    },
+    "dependencies": {
+        "@types/express": "^4.16.0",
+        "@types/socket.io": "^1.4.36",
+        "express": "^4.16.3",
+        "socket.io": "^2.1.1"
+    },
+    "devDependencies": {
+        "nodemon": "^1.18.3",
+        "ts-node": "^7.0.1",
+        "tsc": "^1.20150623.0",
+        "typescript": "^3.6.3"
+    }
+}
