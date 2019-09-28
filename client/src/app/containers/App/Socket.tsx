@@ -9,11 +9,15 @@ const EVENTS = {
 export default class Socket {
     public user: string;
     public port: string;
+
     private onChange: (isConnected: boolean) => void;
     private onMessage: (message: { from: string, content: string }) => void;
     private socket: any;
 
-    constructor(onChange: (isConnected: boolean) => void, onMessage: (message: { from: string, content: string }) => void) {
+    constructor(
+        onChange: (isConnected: boolean) => void, 
+        onMessage: (message: { from: string, content: string }) => void,
+    ) {
         this.onChange = onChange;
         this.onMessage = onMessage;
         this.socket = '';
@@ -25,9 +29,9 @@ export default class Socket {
         this.user = user;
         this.port = port;
 
-        // const host = `http://192.168.0.220:${port}`; // Running from local network
-        // this.socket = io.connect(host);
-        this.socket = io.connect(); // Running from Heroku
+        const host = `http://localhost:${port}`; // Running from local network
+        this.socket = io.connect(host);
+        // this.socket = io.connect(); // Running from Heroku
 
         this.socket.on(EVENTS.CONNECT, this.onConnected);
     };
