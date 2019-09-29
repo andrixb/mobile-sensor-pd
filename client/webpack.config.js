@@ -117,6 +117,7 @@ module.exports = {
         hot: true,
         port: 1200,
         contentBase: RELEASE_PATH,
+        disableHostCheck: true,
         headers: {
             'Access-Control-Allow-Origin': '*',
             'Access-Control-Allow-Methods': 'GET, POST, PUT, DELETE, PATCH, OPTIONS',
