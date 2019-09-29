@@ -41,7 +41,7 @@ export default class Socket {
         this.onChange(true);
     };
 
-    public sendMessage = (message: { from: string, content: string, time: string }) => {
+    public sendMessage = (message: { from: string, content: any, time: string }) => {
         if (typeof this.socket.emit === 'function') {
             this.socket.emit(EVENTS.MESSAGE, message)
         } else {

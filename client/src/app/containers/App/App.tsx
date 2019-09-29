@@ -10,6 +10,7 @@ export interface IAppProps {
 }
 
 export interface IAppState {
+    userId: string;
     isConnected: boolean;
     message: { from: string, content: string };
     socket: Socket;
@@ -20,6 +21,7 @@ export class App extends React.Component<IAppProps, IAppState> {
         super(props);
 
         this.state = {
+            userId: '',
             isConnected: false,
             message: { from: '', content: ''},
             socket: new Socket(this.onChange, this.onMessage),
@@ -27,7 +29,8 @@ export class App extends React.Component<IAppProps, IAppState> {
     }
 
     componentDidMount() {
-        this.state.socket.connect(uuid(), '1212');
+        this.setState({ userId: uuid() });
+        this.state.socket.connect(this.state.userId, '1212');
         this.getMobilePermissions();
     }
 
@@ -54,15 +57,23 @@ export class App extends React.Component<IAppProps, IAppState> {
     getAccelerometerValues = () => {
         let accelerometer = new Accelerometer();
         accelerometer.addEventListener('error', (event: any) => {
-            // Handle runtime errors.
             if (event.error.name === 'NotAllowedError') {
                 // Branch to code for requesting permission.
             } else if (event.error.name === 'NotReadableError' ) {
                 console.log('Cannot connect to the sensor.');
             }
         });
-        accelerometer.addEventListener('reading', (event: any) => console.log('here', event.target));
+        accelerometer.addEventListener('reading', (event: any) => this.emitSensorValues(event.target));
         accelerometer.start();
+    };
+
+    emitSensorValues = (values: any) => {
+        let message = {
+            from: this.state.userId,
+            content: {x: values.x, y: values.y, z: values.z},
+            time: values.timestamp,
+        };
+        this.state.socket.sendMessage(message);
     };
 
     render() { 

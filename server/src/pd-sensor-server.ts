@@ -49,13 +49,13 @@ export class PdSensorServer {
                 console.log('Joined room: %s', room);
             });
 
-            // socket.on(Topic.SIGNATURE_COMPLETED, (room: any, message: Message) => {
-            //     console.log('Room', room, '| Topic', Topic.SIGNATURE_COMPLETED, '| Message', message)
-            //     if (room) {
-            //         this.io.in(room).emit(Topic.SIGNATURE_COMPLETED, message);
-            //         console.log('[SERVER](message): %s', JSON.stringify(message));
-            //     }
-            // });
+            socket.on(Topic.MESSAGE, (message: Message) => {
+                console.log(message);
+                // if (room) {
+                //     this.io.in(room).emit(Topic.SIGNATURE_COMPLETED, message);
+                //     console.log('[SERVER](message): %s', JSON.stringify(message));
+                // }
+            });
 
             // socket.on(Topic.SIGNATURE_CANCELED, (room: any, message: Message) => {
             //     console.log('Room', room, '| Topic', Topic.SIGNATURE_CANCELED, '| Message', message)
