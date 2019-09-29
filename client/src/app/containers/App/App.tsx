@@ -1,7 +1,8 @@
 import React from 'react';
 import { connect } from 'react-redux';
+import uuid from 'uuid/v4';
 import Socket from './Socket';
-import ColorsArea from '../../components/ColorsArea/ColorsArea'
+import ColorsArea from '../../components/ColorsArea/ColorsArea';
 
 import './App.style.scss';
 
@@ -26,17 +27,42 @@ export class App extends React.Component<IAppProps, IAppState> {
     }
 
     componentDidMount() {
-        this.state.socket.connect('user1', '1212');
+        this.state.socket.connect(uuid(), '1212');
+        this.getMobilePermissions();
     }
 
     onChange = (value: boolean) => {
         this.setState({ isConnected: value });
-        console.log(this.state.isConnected);
     };
 
     onMessage = () => {
         this.setState({ isConnected: true });
-        console.log(this.state.isConnected);
+    };
+
+    getMobilePermissions = () => {
+        navigator.permissions.query({ name: 'accelerometer' }).then((result: PermissionStatus) => {
+            if (result.state !== 'granted') {
+              return;
+            }
+
+            this.getAccelerometerValues();
+          }).catch((err: any) => {
+            console.log('Integration with Permissions API is not enabled, still try to start');
+          });
+    };
+
+    getAccelerometerValues = () => {
+        let accelerometer = new Accelerometer();
+        accelerometer.addEventListener('error', (event: any) => {
+            // Handle runtime errors.
+            if (event.error.name === 'NotAllowedError') {
+                // Branch to code for requesting permission.
+            } else if (event.error.name === 'NotReadableError' ) {
+                console.log('Cannot connect to the sensor.');
+            }
+        });
+        accelerometer.addEventListener('reading', (event: any) => console.log('here', event.target));
+        accelerometer.start();
     };
 
     render() { 
