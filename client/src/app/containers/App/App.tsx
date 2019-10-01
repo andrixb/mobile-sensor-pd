@@ -4,6 +4,8 @@ import uuid from 'uuid/v4';
 import Socket from './Socket';
 import ColorsArea from '../../components/ColorsArea/ColorsArea';
 
+import * as SensorAPI from 'motion-sensors-polyfill';
+
 import './App.style.scss';
 
 export interface IAppProps {
@@ -55,7 +57,7 @@ export class App extends React.Component<IAppProps, IAppState> {
     };
 
     getAccelerometerValues = () => {
-        let accelerometer = new Accelerometer();
+        let accelerometer = new SensorAPI.Accelerometer();
         accelerometer.addEventListener('error', (event: any) => {
             if (event.error.name === 'NotAllowedError') {
                 // Branch to code for requesting permission.

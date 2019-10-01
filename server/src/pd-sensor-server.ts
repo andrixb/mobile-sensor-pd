@@ -68,7 +68,7 @@ export class PdSensorServer {
             });
 
             socket.on(Topic.MESSAGE, (message: Message) => {
-                console.log(message);
+                console.log('Mobile Sensor Message', message);
                 // if (room) {
                 //     this.io.in(room).emit(Topic.SIGNATURE_COMPLETED, message);
                 //     console.log('[SERVER](message): %s', JSON.stringify(message));
