@@ -45,7 +45,6 @@ export class PdSensorServer {
     private async createMIDIStream(): Promise<void> {
         this.midiOutput = new midi.Output();
         await this.midiOutput.openVirtualPort('NodeJS');
-        console.log('hola');
     }
 
     private sendTestMIDIMessage(): void {
@@ -103,8 +102,8 @@ export class PdSensorServer {
 
 
             socket.on('disconnect', () => {
+                this.midiOutput.closePort();
                 console.log('Client disconnected');
-                // output.closePort();
             });
         });
     }
