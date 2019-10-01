@@ -2,6 +2,8 @@ import { createServer, Server } from 'http';
 import * as express from 'express';
 import * as socketIo from 'socket.io';
 
+import * as midi from 'midi';
+
 import { Message } from './model';
 import { Topic } from './topic';
 
@@ -11,13 +13,17 @@ export class PdSensorServer {
     private server: Server;
     private io: SocketIO.Server;
     private port: string | number;
+    private midiOutput: any;
 
     constructor() {
         this.createApp();
         this.config();
         this.createServer();
         this.sockets();
+        this.createMIDIStream();
         this.listen();
+
+        this.sendTestMIDIMessage();
     }
 
     private createApp(): void {
@@ -34,6 +40,19 @@ export class PdSensorServer {
 
     private sockets(): void {
         this.io = socketIo(this.server);
+    }
+
+    private async createMIDIStream(): Promise<void> {
+        this.midiOutput = new midi.Output();
+        await this.midiOutput.openVirtualPort('NodeJS');
+        console.log('hola');
+    }
+
+    private sendTestMIDIMessage(): void {
+        setInterval(() => {
+            const msg = [144, 64, 90];
+            this.midiOutput.sendMessage(msg);
+        }, 500);
     }
 
     private listen(): void {
@@ -85,6 +104,7 @@ export class PdSensorServer {
 
             socket.on('disconnect', () => {
                 console.log('Client disconnected');
+                // output.closePort();
             });
         });
     }

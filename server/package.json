@@ -10,6 +10,8 @@
         "@types/express": "^4.16.0",
         "@types/socket.io": "^1.4.36",
         "express": "^4.16.3",
+        "midi": "^1.0.0",
+        "node-gyp": "^5.0.4",
         "socket.io": "^2.1.1"
     },
     "devDependencies": {

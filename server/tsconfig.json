@@ -18,5 +18,9 @@
                 "src/types/*"
             ]
         }
-    }
+    },
+    "include": [
+        "src/**/*",
+        "src/types/midi.d.ts"
+    ]
 }
