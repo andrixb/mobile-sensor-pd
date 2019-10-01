@@ -71,6 +71,8 @@ export class PdSensorServer {
                 // console.log('Mobile Sensor Message', message);
                 const current = this.midiOutputs.get(socket.id);
                 this.sendTestMIDIMessage(current);
+                
+                
                 // if (room) {
                 //     this.io.in(room).emit(Topic.SIGNATURE_COMPLETED, message);
                 //     console.log('[SERVER](message): %s', JSON.stringify(message));
