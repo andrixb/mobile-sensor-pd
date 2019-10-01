@@ -13,17 +13,14 @@ export class PdSensorServer {
     private server: Server;
     private io: SocketIO.Server;
     private port: string | number;
-    private midiOutput: any;
+    private midiOutputs: any = new Map();
 
     constructor() {
         this.createApp();
         this.config();
         this.createServer();
         this.sockets();
-        this.createMIDIStream();
         this.listen();
-
-        this.sendTestMIDIMessage();
     }
 
     private createApp(): void {
@@ -42,16 +39,15 @@ export class PdSensorServer {
         this.io = socketIo(this.server);
     }
 
-    private async createMIDIStream(): Promise<void> {
-        this.midiOutput = new midi.Output();
-        await this.midiOutput.openVirtualPort('NodeJS');
+    private createMIDIStream(label: string): void {
+        const output = new midi.Output();
+        output.openVirtualPort(label);
+        return output
     }
 
-    private sendTestMIDIMessage(): void {
-        setInterval(() => {
+    private sendTestMIDIMessage(output: any): void {
             const msg = [144, 64, 90];
-            this.midiOutput.sendMessage(msg);
-        }, 500);
+            output.sendMessage(msg);
     }
 
     private listen(): void {
@@ -61,6 +57,10 @@ export class PdSensorServer {
 
         this.io.on('connect', (socket: any) => {
             console.log('Connected client on port %s.', this.port);
+            this.midiOutputs.set(
+                socket.id, 
+                this.createMIDIStream(socket.id), 
+            );
 
             socket.on(Topic.JOIN_ROOM, (room: any) => {
                 socket.join(room);
@@ -68,7 +68,9 @@ export class PdSensorServer {
             });
 
             socket.on(Topic.MESSAGE, (message: Message) => {
-                console.log('Mobile Sensor Message', message);
+                // console.log('Mobile Sensor Message', message);
+                const current = this.midiOutputs.get(socket.id);
+                this.sendTestMIDIMessage(current);
                 // if (room) {
                 //     this.io.in(room).emit(Topic.SIGNATURE_COMPLETED, message);
                 //     console.log('[SERVER](message): %s', JSON.stringify(message));
@@ -102,7 +104,7 @@ export class PdSensorServer {
 
 
             socket.on('disconnect', () => {
-                this.midiOutput.closePort();
+                // this.midiOutput.closePort();
                 console.log('Client disconnected');
             });
         });

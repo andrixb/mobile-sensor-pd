@@ -1,0 +1,16 @@
+#N canvas 1860 113 450 300 10;
+#X floatatom 89 156 3 0 0 0 - - -;
+#X obj 139 63 notein;
+#X obj 44 130 stripnote;
+#X floatatom 44 155 3 0 0 0 - - -;
+#X text 31 24 MIDI IN;
+#X obj 44 175 bng 20 250 50 0 empty empty empty 17 7 0 10 -262144 -1
+-1;
+#X floatatom 156 108 5 0 0 0 - - -;
+#X text 197 100 channel;
+#X connect 1 0 2 0;
+#X connect 1 1 2 1;
+#X connect 1 2 6 0;
+#X connect 2 0 3 0;
+#X connect 2 1 0 0;
+#X connect 3 0 5 0;

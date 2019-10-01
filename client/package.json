@@ -3,7 +3,7 @@
     "version": "0.1.0",
     "private": true,
     "scripts": {
-        "start": "yarn start:dev",
+        "watch": "yarn start:dev",
         "start:dev": "yarn dev:path:base npm run dev:path:asset npm run dev:path:cdn npm run dev:path:host npm run dev:path:app webpack-dev-server",
         "build": "HOST=$HOST BASE_URL=$BASE_URL ASSETS_VERSION=$ASSETS_VERSION CDN_URL=$CDN_URL webpack --config webpack.prod.js",
         "test": "jest --verbose",
