@@ -45,9 +45,14 @@ export class PdSensorServer {
         return output
     }
 
-    private sendTestMIDIMessage(output: any): void {
-            const msg = [144, 64, 90];
+    private sendTestMIDIMessage(output: any, value: number): void {
+        const msg = [value*10];
+        output.sendMessage(msg);
+        
+        if (msg[0] > 50) {
+            console.log(msg[0])
             output.sendMessage(msg);
+        }
     }
 
     private listen(): void {
@@ -69,8 +74,9 @@ export class PdSensorServer {
 
             socket.on(Topic.MESSAGE, (message: Message) => {
                 // console.log('Mobile Sensor Message', message);
+                let value = this.defineValueToSend(message);
                 const current = this.midiOutputs.get(socket.id);
-                this.sendTestMIDIMessage(current);
+                this.sendTestMIDIMessage(current, value);
                 
                 
                 // if (room) {
@@ -110,6 +116,10 @@ export class PdSensorServer {
                 console.log('Client disconnected');
             });
         });
+    }
+
+    private defineValueToSend(value: any): number {
+        return value.content.x * value.content.y * value.content.z;
     }
 
     public getApp(): express.Application {
