@@ -45,11 +45,13 @@ export class PdSensorServer {
         return output
     }
 
-    private sendTestMIDIMessage(output: any, value: number[]): void {
-        const msg = [[value[0]*10], value[1]*10, value[2]*10];
+    private sendTestMIDIMessage(output: any, value: number): void {
+        const MIDI_NOTE_ON = 144;
+        const CHANNEL_1 = 70;
+        const msg = [MIDI_NOTE_ON, CHANNEL_1, value];
         // output.sendMessage(msg);
         
-        if (msg[0] > 50) {
+        if (msg[2] > 50) {
             console.log(msg)
             output.sendMessage(msg);
         }
@@ -118,12 +120,8 @@ export class PdSensorServer {
         });
     }
 
-    private defineValueToSend(value: any): number[] {
-        return [
-            value.content.x * value.content.y * value.content.z,
-            value.content.y * value.content.z,
-            value.content.y * value.content.z,
-        ]
+    private defineValueToSend(value: any): number {
+        return value.content.x * value.content.y * value.content.z;
     }
 
     public getApp(): express.Application {
