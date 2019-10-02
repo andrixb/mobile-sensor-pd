@@ -45,12 +45,12 @@ export class PdSensorServer {
         return output
     }
 
-    private sendTestMIDIMessage(output: any, value: number): void {
-        const msg = [value*10];
-        output.sendMessage(msg);
+    private sendTestMIDIMessage(output: any, value: number[]): void {
+        const msg = [[value[0]*10], value[1]*10, value[2]*10];
+        // output.sendMessage(msg);
         
         if (msg[0] > 50) {
-            console.log(msg[0])
+            console.log(msg)
             output.sendMessage(msg);
         }
     }
@@ -118,8 +118,12 @@ export class PdSensorServer {
         });
     }
 
-    private defineValueToSend(value: any): number {
-        return value.content.x * value.content.y * value.content.z;
+    private defineValueToSend(value: any): number[] {
+        return [
+            value.content.x * value.content.y * value.content.z,
+            value.content.y * value.content.z,
+            value.content.y * value.content.z,
+        ]
     }
 
     public getApp(): express.Application {
